@@ -5,20 +5,40 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { HighlightDirective } from './highlight.directive';
-import { DecoratePipe } from './decorate.pipe';
 import { AppHeaderDirective } from './app-header.directive';
+import { EmployeeComponent } from './employee/employee.component';
+import { FormsModule }   from '@angular/forms';
+import { Decorate } from './decorate.pipe';
+import { FilternamePipe } from './filtername.pipe';
+import { SortnamePipe } from './sortname.pipe';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+const appRoutes: Routes = [
+  { path: 'employeeList', component: EmployeeListComponent },
+  { path: 'addEmployee', component: AddEmployeeComponent },
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     HighlightDirective,
-    DecoratePipe,
-    AppHeaderDirective
+    AppHeaderDirective,
+    EmployeeComponent,
+    Decorate,
+    FilternamePipe,
+    SortnamePipe,
+    AddEmployeeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]

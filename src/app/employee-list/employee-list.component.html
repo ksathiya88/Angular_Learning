@@ -1,8 +1,8 @@
 <div>
-  <div appHighlight class="employee_class" *ngFor="let employee of employees">
-     <div><label appAppHeader>Employee Name:</label>{{employee.name| uppercase }}</div>
-     <div><label appAppHeader>DOB:</label>{{employee.date_of_birth | date:"MM/dd/yy"}}</div>
-     <div><label appAppHeader>Position Held:</label>{{employee.position_held | uppercase | decorate:"**" }}</div> 
-     <input type="button" value="Delete" (click)="deleteEmployee(employee.key)"/>
+  Color Needed:{{color}}
+  <input type="text" [(ngModel)]="position_held" />
+  Employees:{{employees}}
+  <div appHighlight  class="employee_class" *ngFor="let employee of employees">
+     <app-employee [employee]="employee" (delete)="deleteEmployee($event)"></app-employee>
   </div>
 </div>

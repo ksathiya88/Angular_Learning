@@ -1,10 +1,12 @@
-import { Directive,ElementRef,HostListener,HostBinding} from '@angular/core';
+import { Input,Directive,ElementRef,HostListener,HostBinding} from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]'
 })
 export class HighlightDirective {
   el:ElementRef;
+
+  @Input() colorInput:string;
 
   constructor(el:ElementRef) {
       this.el = el;
@@ -24,8 +26,10 @@ export class HighlightDirective {
 }
 
    public highlight(color:string){
+
      this.el.nativeElement.style.backgroundColor = color;
-   }
+   
+    }
 
    public highlightColor(color:string){
      this.color = color;
