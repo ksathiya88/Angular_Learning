@@ -15,11 +15,13 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmpComponent } from './add-emp/add-emp.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
   { path: 'employeeList', component: EmployeeListComponent },
   { path: 'addEmployee', component: AddEmployeeComponent },
-  { path: 'employee/:key', component: EmployeeComponent }
+  { path: 'employee/:key', component: EmployeeComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
     SortnamePipe,
     AddEmployeeComponent,
     AddEmpComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
