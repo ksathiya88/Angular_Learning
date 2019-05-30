@@ -18,24 +18,27 @@ export class EmployeeListComponent implements OnInit {
 
   position_held:string;
   
-  employees:any= ["a","b","c"];
+  employees:any;
  
-  constructor(public deleteService:DeleteService,public http:HttpClient) {
+  constructor(public deleteService:DeleteService,public http:HttpServiceService) {
        
    }
 
   ngOnInit() {
+      this.refreshEmployee();
+  }
 
-    console.log("getHttp",this.http.get("http://localhost:8080/getEmployees"));
-   //this.employees = this.http.get("http://localhost:8080/getEmployees")
-    this.http.get("http://localhost:8080/getEmployees").subscribe(
+
+
+  refreshEmployee(){
+    this.http.getEmployees().subscribe(
       (data) => {
         console.log("this",this);
         console.log(data);
         this.employees=data; 
   
       })
-    
+    // this.employees = employees;
   }
 
   deleteEmployee(key:number){

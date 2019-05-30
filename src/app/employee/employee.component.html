@@ -6,7 +6,7 @@
 
 
 <div><label appAppHeader>Employee Name:</label>{{employee.name | uppercase }}</div>
-  <div><label appAppHeader>DOB:</label>{{employee.date_of_birth | date:"medium" }}</div>
+  <div><label appAppHeader>DOB:</label>{{employee.date_of_birth  }}</div>
   <div><label appAppHeader>Position Held:</label> </div>    
   <div><input type="button" value="Delete" (click)="deleteFn(employee.key)" />
 {{employee.position_held | decorate:"**" }}</div>

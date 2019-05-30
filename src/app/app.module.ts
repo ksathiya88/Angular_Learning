@@ -14,6 +14,7 @@ import { SortnamePipe } from './sortname.pipe';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AddEmpComponent } from './add-emp/add-emp.component';
 
 const appRoutes: Routes = [
   { path: 'employeeList', component: EmployeeListComponent },
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     FilternamePipe,
     SortnamePipe,
     AddEmployeeComponent,
+    AddEmpComponent,
   ],
   imports: [
     BrowserModule,
