@@ -19,6 +19,7 @@ import { AddEmpComponent } from './add-emp/add-emp.component';
 const appRoutes: Routes = [
   { path: 'employeeList', component: EmployeeListComponent },
   { path: 'addEmployee', component: AddEmployeeComponent },
+  { path: 'employee/:key', component: EmployeeComponent }
 ];
 
 

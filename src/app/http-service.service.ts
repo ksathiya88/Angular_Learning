@@ -17,6 +17,16 @@ export class HttpServiceService {
     
   }
 
+  getEmployee(key) {
+    let data={"key":key};
+    return this.http.get('http://localhost:8080/getEmployee',{params:{param:key}}).pipe(map((response) => {
+      //console.log("response11111",response);
+      return response;
+    }))
+    
+  }
+
+
   addEmployee(name, dob, position_held) {
     var data = {
       name: name,

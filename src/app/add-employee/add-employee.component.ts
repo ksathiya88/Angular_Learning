@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpServiceService } from '../http-service.service';
-import { refreshDescendantViews } from '@angular/core/src/render3/instructions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-employee',
@@ -14,7 +14,7 @@ export class AddEmployeeComponent implements OnInit {
 
    @Output() refresh:EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private httpService: HttpServiceService) { }
+  constructor(private httpService: HttpServiceService,private router:Router) { }
 
   ngOnInit() {
   }
@@ -25,7 +25,8 @@ export class AddEmployeeComponent implements OnInit {
       this.dob,this.position_held)
       .subscribe((data)=>{
           console.log("data",data);
-          this.refresh.emit("added");
+         // this.refresh.emit("added");
+         this.router.navigate(['employeeList']);
       });
   }
 

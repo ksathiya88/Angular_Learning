@@ -1,11 +1,7 @@
 <div>
-  Color Needed:{{color}}
-  <input type="text" [(ngModel)]="position_held" />
-  Employees:{{employees}}
   <div appHighlight  class="employee_class" *ngFor="let employee of employees">
      <app-employee [employee]="employee" (delete)="deleteEmployee($event)"></app-employee>
   </div>
-<app-add-emp (refresh)="refreshEmployee($event)"></app-add-emp>
-
+<!-- <app-add-emp (refresh)="refreshEmployee($event)"></app-add-emp> -->
   <!-- <app-add-employee (refresh)="refreshEmployee($event)"></app-add-employee> -->
 </div>
