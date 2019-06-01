@@ -2,16 +2,19 @@
 	<div>
 		<label>UserName:</label>
 
-		<input type="text" [(ngModel)]="username">
+		<input type="text" [(ngModel)]="username" required #name="ngModel">
 	</div>
+	<div [hidden]="name.valid || name.pristine" class="alert alert-danger">Username is required</div>
 	<br>
 	<div>
 		<label>Password:</label>
-		<input type="password" [(ngModel)]="password">
+		<input type="password" [(ngModel)]="password" required #pass="ngModel">
 	</div>
+	<div [hidden]="pass.valid || pass.pristine" class="alert alert-danger">Password is required</div>
 	<div style="height:3px"></div>
 	<div>
-		<input class="btn btn-primary" type="button" value="Submit" (click)="authenticate()">
+		<input [disabled]="pass.invalid||username.invalid" class="btn btn-primary" type="button" value="Submit"
+			(click)="authenticate()">
 	</div>
 	<div *ngIf="error" class="alert alert-danger">
 		<strong>Authentication Failed !</strong>
