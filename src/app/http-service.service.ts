@@ -14,16 +14,16 @@ export class HttpServiceService {
       //console.log("response11111",response);
       return response;
     }))
-    
+
   }
 
   getEmployee(key) {
-    let data={"key":key};
-    return this.http.get('http://localhost:8080/getEmployee',{params:{param:key}}).pipe(map((response) => {
+    let data = { "key": key };
+    return this.http.get('http://localhost:8080/getEmployee', { params: { param: key } }).pipe(map((response) => {
       //console.log("response11111",response);
       return response;
     }))
-    
+
   }
 
 
@@ -36,6 +36,11 @@ export class HttpServiceService {
     //console.log("addEmployee", JSON.stringify(data));
     return this.http.put('http://localhost:8080/addEmployee', data);
 
+  }
+
+  authenticate = function (username, password) {
+    var data = { "username": username, "password": password };
+    return this.http.put('http://localhost:8080/authenticate', data);
   }
 
   deleteEmployee() {

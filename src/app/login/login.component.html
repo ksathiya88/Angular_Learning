@@ -1,0 +1,19 @@
+<div class="login_class">
+	<div>
+		<label>UserName:</label>
+
+		<input type="text" [(ngModel)]="username">
+	</div>
+	<br>
+	<div>
+		<label>Password:</label>
+		<input type="password" [(ngModel)]="password">
+	</div>
+	<div style="height:3px"></div>
+	<div>
+		<input class="btn btn-primary" type="button" value="Submit" (click)="authenticate()">
+	</div>
+	<div *ngIf="error" class="alert alert-danger">
+		<strong>Authentication Failed !</strong>
+	</div>
+</div>

@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import {map} from 'rxjs/Operators';
 import { HttpClient } from '@angular/common/http';
-//import {Http} from '@angular/http';
+import {Http} from '@angular/http';
 import { Observable, Subscription, Observer } from 'rxjs';
 import { HttpServiceService } from './http-service.service';
+
+declare const VERSION: string;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title1 = 'Version: ' + VERSION;
   
   title = 'my-app';
   color = "Black";

@@ -26,7 +26,7 @@ export class AddEmployeeComponent implements OnInit {
       .subscribe((data)=>{
           console.log("data",data);
          // this.refresh.emit("added");
-         this.router.navigate(['employeeList']);
+         this.router.navigate(["employeeList"]);
       });
   }
 
