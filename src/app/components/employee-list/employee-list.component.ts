@@ -1,7 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {DeleteService} from '../delete.service';
-import {HttpServiceService} from '../http-service.service';
-import {Employee} from '../model/employee';
+import {DeleteService} from '../../services/delete.service';
+import {EmployeeServiceService} from '../../api/employee/employee-service.service';
+import {IEmployeeDTO} from '../../api/employee/employee.dto';
+import {EmployeeModel} from '../../model/EmployeeModel';
 
 @Component({
   selector: 'app-employee-list',
@@ -17,9 +18,9 @@ export class EmployeeListComponent implements OnInit {
 
   positionHeld: string;
 
-  employees: Array<Employee>;
+  employees: Array<EmployeeModel> = [];
 
-  constructor(public deleteService: DeleteService, public http: HttpServiceService) {
+  constructor(public deleteService: DeleteService, public http: EmployeeServiceService) {
 
   }
 
@@ -30,13 +31,12 @@ export class EmployeeListComponent implements OnInit {
 
   refreshEmployee() {
     this.http.getEmployees().subscribe(
-      (data) => {
-        console.log('this', this);
-        console.log(data);
-        this.employees = data;
-
+      (data: Array<IEmployeeDTO>) => {
+        const employeeModels = data.map((employeeDTO: IEmployeeDTO) =>
+          EmployeeModel.fromDTO(employeeDTO)
+        );
+        this.employees = this.employees.concat(employeeModels);
       });
-    // this.employees = employees;
   }
 
   deleteEmployee(key: number) {

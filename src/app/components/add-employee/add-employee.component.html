@@ -1,0 +1,11 @@
+<div>
+Add Employee
+<div></div>
+<label for="name">Name:</label><input id="name" type="text" [(ngModel)]="employeeModel.name"/>
+<div></div>
+<label for="dob">Date Of Birth:</label><input id="dob" type="date" [(ngModel)]="employeeModel.dob"/>
+<div></div>
+<label for="position_held">Position Held:</label> <input id="position_held" type="text" [(ngModel)]="employeeModel.positionHeld"/>
+<div></div>
+<input type="button" value="Submit" (click)="submit()"/>
+</div>

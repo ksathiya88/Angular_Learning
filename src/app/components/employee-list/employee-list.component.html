@@ -1,0 +1,7 @@
+FilterByName: <input type="string" [(ngModel)]="filterValue"/>
+SortedByName
+
+  <div appHighlight class="employee_class"
+       *ngFor="let employee of (employees|sortname | filtername:'name':filterValue)">
+    <app-employee [employee]="employee" (delete)="deleteEmployee($event)"></app-employee>
+  </div>
