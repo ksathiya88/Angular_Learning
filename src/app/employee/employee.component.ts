@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpServiceService } from '../http-service.service';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {HttpServiceService} from '../http-service.service';
+import {Employee} from '../model/employee';
 
 @Component({
   selector: 'app-employee',
@@ -8,24 +9,24 @@ import { HttpServiceService } from '../http-service.service';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  
-  @Input() employee:any;
-  @Output() delete:EventEmitter<number>= new EventEmitter<number>();
 
-  constructor(public route:ActivatedRoute, public httpService:HttpServiceService) { 
-    
+  @Input() employee: Employee;
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
+
+  constructor(public route: ActivatedRoute, public httpService: HttpServiceService) {
+
   }
 
   ngOnInit() {
-    console.log("routeValue",this.route.snapshot.params['key']);
-    let key = this.route.snapshot.params['key'];
-    this.httpService.getEmployee(key).subscribe((emp)=>{
-      console.log("employee",emp);
+    console.log('routeValue', this.route.snapshot.params.key);
+    const key = this.route.snapshot.params.key;
+    this.httpService.getEmployee(key).subscribe((emp) => {
+      console.log('employee', emp);
       this.employee = emp;
-    }); 
+    });
   }
 
-  deleteFn(key:number){
-      this.delete.emit(key);
+  deleteFn(key: number) {
+    this.delete.emit(key);
   }
 }

@@ -1,51 +1,42 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/Operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/Operators';
+import {Observable} from 'rxjs';
+import {Employee} from './model/employee';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpServiceService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+  }
 
-  getEmployees() {
+  getEmployees(): Observable<Array<Employee>> {
     return this.http.get('http://localhost:8080/getEmployees').pipe(map((response) => {
-      //console.log("response11111",response);
-      return response;
-    }))
-
+      return response as Array<Employee>;
+    }));
   }
 
-  getEmployee(key) {
-    let data = { "key": key };
-    return this.http.get('http://localhost:8080/getEmployee', { params: { param: key } }).pipe(map((response) => {
-      //console.log("response11111",response);
-      return response;
-    }))
-
+  getEmployee(key): Observable<Employee> {
+    const data = {key};
+    return this.http.get('http://localhost:8080/getEmployee', {params: {param: key}}).pipe(map((response) => {
+      return response as Employee;
+    }));
   }
 
 
-  addEmployee(name, dob, position_held) {
-    var data = {
-      name: name,
+  addEmployee(name, dob, positionHeld) {
+    const data = {
+      name,
       date_of_birth: dob,
-      position_held: position_held
+      position_held: positionHeld
     };
-    //console.log("addEmployee", JSON.stringify(data));
     return this.http.put('http://localhost:8080/addEmployee', data);
-
   }
 
   authenticate = function (username, password) {
-    var data = { "username": username, "password": password };
+    const data = {username, password};
     return this.http.put('http://localhost:8080/authenticate', data);
-  }
-
-  deleteEmployee() {
-
-  }
-
-
+  };
 }
