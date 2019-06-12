@@ -20,9 +20,14 @@ export class EmployeeServiceService {
   }
 
   getEmployee(key): Observable<IEmployeeDTO> {
-    const data = {key};
     return this.http.get('http://localhost:8080/getEmployee', {params: {param: key}}).pipe(map((response) => {
       return response as IEmployeeDTO;
+    }));
+  }
+
+  deleteEmployee(key): Observable<Array<IEmployeeDTO>> {
+    return this.http.delete('http://localhost:8080/deleteEmployee', {params: {key}}).pipe(map((response) => {
+      return response as Array<IEmployeeDTO>;
     }));
   }
 

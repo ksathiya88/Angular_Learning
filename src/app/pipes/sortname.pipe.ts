@@ -11,10 +11,10 @@ import {EmployeeModel} from '../model/EmployeeModel';
 })
 export class SortnamePipe implements PipeTransform {
 
-  transform(value: Array<EmployeeModel>, args?: any): any {
+  transform(value: Array<EmployeeModel>, sortBy: any): any {
     if (value) {
       return value.sort((firstValue: EmployeeModel, secondValue: EmployeeModel) => {
-        if (firstValue.name.toLowerCase() < secondValue.name.toLowerCase()) {
+        if (firstValue[sortBy].toLowerCase() < secondValue[sortBy].toLowerCase()) {
           return -1;
         } else {
           return 1;

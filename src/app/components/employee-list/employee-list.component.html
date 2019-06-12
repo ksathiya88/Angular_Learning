@@ -1,7 +1,12 @@
-FilterByName: <input type="string" [(ngModel)]="filterValue"/>
-SortedByName
-
-  <div appHighlight class="employee_class"
-       *ngFor="let employee of (employees|sortname | filtername:'name':filterValue)">
-    <app-employee [employee]="employee" (delete)="deleteEmployee($event)"></app-employee>
-  </div>
+<br/>
+<div>FilterByName: <input type="string" [(ngModel)]="filterValue"/></div>
+<br/>
+<div>SortedBy:<select [(ngModel)]="sortBy">
+  <option value="name" selected>Name</option>
+  <option value="positionHeld">positionHeld</option>
+</select></div>
+<br/>
+<div appHighlight class="employee_class"
+     *ngFor="let employee of (employees|sortname:sortBy | filtername:'name':filterValue)">
+  <app-employee [employee]="employee" (delete)="deleteEmployee($event)"></app-employee>
+</div>

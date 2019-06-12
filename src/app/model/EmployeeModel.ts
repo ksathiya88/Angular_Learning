@@ -1,4 +1,5 @@
 import {IEmployeeDTO} from '../api/employee/employee.dto';
+import {parseDate} from '../utils/dateUtils';
 
 /**
  * Employee Model
@@ -20,10 +21,13 @@ export class EmployeeModel {
   }
 
   public toDTO(): IEmployeeDTO {
+    // console.log('dob', this.dateOfBirth);
+    // console.log('this', this);
     const dto: IEmployeeDTO = {} as any;
     dto.name = this.name;
     dto.key = this.key;
-    dto.date_of_birth = this.dateOfBirth.toTimeString();
+    const dateObj: Date = parseDate(this.dateOfBirth);
+    dto.date_of_birth = dateObj.toLocaleDateString();
     dto.position_held = this.positionHeld;
     return dto;
   }
