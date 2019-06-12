@@ -4,6 +4,14 @@ import {map} from 'rxjs/Operators';
 import {Observable} from 'rxjs';
 import {IEmployeeDTO} from './employee.dto';
 
+
+/**
+ * Written by karthik on 11-06-2019
+ * Handles all the http call for the Employee
+ * So all the components need to use this service
+ * for making http calls
+ */
+
 @Injectable({
   providedIn: 'root'
 })

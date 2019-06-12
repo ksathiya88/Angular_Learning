@@ -3,6 +3,14 @@ import {EmployeeServiceService} from '../../api/employee/employee-service.servic
 import {Router} from '@angular/router';
 import {EmployeeModel} from '../../model/EmployeeModel';
 
+/**
+ * Written by karthik on 11-06-2019
+ * This component used for adding the employee
+ * Makes use of EmployeeService to call to the
+ * server and updates the Employee
+ * loaded when the user enters '/home/addEmployee' in the url
+ */
+
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',

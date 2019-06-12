@@ -1,5 +1,6 @@
 /**
  * Written by karthik on 11-06-2019
+ * Employee dto object fetched from the server
  */
 
 export interface IEmployeeDTO {

@@ -2,7 +2,9 @@ import {IEmployeeDTO} from '../api/employee/employee.dto';
 import {parseDate} from '../utils/dateUtils';
 
 /**
- * Employee Model
+ * Employee Model which is representation of the
+ * dto.It is the Model Object which is represented in the view.
+ * Used by the Employee Component to show the View.
  */
 export class EmployeeModel {
 

@@ -4,6 +4,16 @@ import {EmployeeServiceService} from '../../api/employee/employee-service.servic
 import {IEmployeeDTO} from '../../api/employee/employee.dto';
 import {EmployeeModel} from '../../model/EmployeeModel';
 
+/**
+ * Written by karthik on 11-06-2019
+ * This component iterates through the
+ * employees received from the backend
+ * and created Employee Component for a
+ * each element in the employees array
+ * loaded when the user enters '/home/employeeList' in the url
+ */
+
+
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
