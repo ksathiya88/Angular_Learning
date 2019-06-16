@@ -13,23 +13,24 @@ import {FilternamePipe} from './pipes/filtername.pipe';
 import {SortnamePipe} from './pipes/sortname.pipe';
 import {AddEmployeeComponent} from './components/add-employee/add-employee.component';
 import {RouterModule, Routes} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginComponent} from './components/login/login.component';
 import {HomeComponent} from './components/home/home.component';
 import {LogoutComponent} from './components/logout/logout.component';
+import {AuthGuard} from './guards';
+import {BasicAuthInterceptor, ErrorInterceptor} from './helpers';
 
 const appRoutes: Routes = [
-  {path: '', component: LoginComponent},
-
+  {path: 'login', component: LoginComponent},
   {
-    path: 'home', component: HomeComponent, children: [
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       {path: 'employeeList', component: EmployeeListComponent},
       {path: 'addEmployee', component: AddEmployeeComponent},
       {path: 'employee/key', component: EmployeeComponent},
-      {path: 'logout', component: LogoutComponent},
-      {path: '**', component: PageNotFoundComponent}]
-  }];
+      {path: 'logout', component: LogoutComponent}]
+  },
+  {path: '**', component: PageNotFoundComponent}];
 
 @NgModule({
   declarations: [
@@ -54,7 +55,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+
+    // // provider used to create fake backend
+    // fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

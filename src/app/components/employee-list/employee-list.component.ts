@@ -49,7 +49,8 @@ export class EmployeeListComponent implements OnInit {
           EmployeeModel.fromDTO(employeeDTO)
         );
         this.employees = this.employees.concat(employeeModels);
-      });
+      }
+    );
   }
 
   deleteEmployee(key: number) {
