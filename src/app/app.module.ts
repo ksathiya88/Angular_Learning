@@ -7,7 +7,7 @@ import {EmployeeListComponent} from './components/employee-list/employee-list.co
 import {HighlightDirective} from './pipes/highlight.directive';
 import {AppHeaderDirective} from './directives/app-header.directive';
 import {EmployeeComponent} from './components/employee/employee.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Decorate} from './pipes/decorate.pipe';
 import {FilternamePipe} from './pipes/filtername.pipe';
 import {SortnamePipe} from './pipes/sortname.pipe';
@@ -20,9 +20,11 @@ import {HomeComponent} from './components/home/home.component';
 import {LogoutComponent} from './components/logout/logout.component';
 import {AuthGuard} from './guards';
 import {BasicAuthInterceptor, ErrorInterceptor} from './helpers';
+import {ReactiveLoginComponent} from './components/reactive-login/reactive-login.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
+  // {path: 'login', component: ReactiveLoginComponent},
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       {path: 'employeeList', component: EmployeeListComponent},
@@ -47,9 +49,11 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     LogoutComponent,
+    ReactiveLoginComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

@@ -16,8 +16,6 @@ import {AuthenticationService} from '../../services';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
   error: boolean;
 
   constructor(public httpService: EmployeeServiceService, public router: Router, private authenticationService: AuthenticationService) {
@@ -27,9 +25,10 @@ export class LoginComponent implements OnInit {
 
   }
 
-  authenticate() {
+  onSubmit(form) {
+    console.log('template Model', form);
 
-    this.authenticationService.login(this.username, this.password)
+    this.authenticationService.login(form.value.username, form.value.password)
     // .pipe(first())
       .subscribe(
         data => {
