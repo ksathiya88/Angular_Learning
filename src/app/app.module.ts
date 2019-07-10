@@ -15,22 +15,27 @@ import {AddEmployeeComponent} from './components/add-employee/add-employee.compo
 import {RouterModule, Routes} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {LoginComponent} from './components/login/login.component';
 import {HomeComponent} from './components/home/home.component';
-import {LogoutComponent} from './components/logout/logout.component';
 import {AuthGuard} from './guards';
 import {BasicAuthInterceptor, ErrorInterceptor} from './helpers';
 import {ReactiveLoginComponent} from './components/reactive-login/reactive-login.component';
+import {AuthenticationModule} from './modules/authentication/authentication.module';
 
 const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent},
-  // {path: 'login', component: ReactiveLoginComponent},
+  // { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    loadChildren: './modules/authentication/authentication.module#AuthenticationModule',
+  },  // {path: 'login', component: ReactiveLoginComponent},
+  {
+    path: 'logout',
+    loadChildren: './modules/authentication/authentication.module#AuthenticationModule',
+  },
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       {path: 'employeeList', component: EmployeeListComponent},
       {path: 'addEmployee', component: AddEmployeeComponent},
-      {path: 'employee/key', component: EmployeeComponent},
-      {path: 'logout', component: LogoutComponent}]
+      {path: 'employee/key', component: EmployeeComponent}]
   },
   {path: '**', component: PageNotFoundComponent}];
 
@@ -46,9 +51,7 @@ const appRoutes: Routes = [
     SortnamePipe,
     AddEmployeeComponent,
     PageNotFoundComponent,
-    LoginComponent,
     HomeComponent,
-    LogoutComponent,
     ReactiveLoginComponent
   ],
   imports: [
@@ -57,6 +60,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    AuthenticationModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
