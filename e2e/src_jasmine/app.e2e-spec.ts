@@ -1,16 +1,17 @@
-import { AppPage } from './app.po';
+import { AppPage } from '../src/pages/app.po';
 import { browser, logging } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
+    browser.ignoreSynchronization = true;
     page = new AppPage();
   });
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to my-app!');
+    expect(page.getTitleText()).toEqual('Template Model Form');
   });
 
   afterEach(async () => {
