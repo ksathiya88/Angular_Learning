@@ -4,15 +4,18 @@
     "outDir": "../out-tsc/app",
     "module": "commonjs",
     "target": "es5",
-//    "types": [
-//      "jasmine",
-//      "jasminewd2",
-//      "node"
-//    ],
     "types": [
+      "jasmine",
+      "jasminewd2",
+      "node",
       "chai",
       "cucumber",
       "node"
-    ]
+    ],
+    // "types": [
+    //   "chai",
+    //   "cucumber",
+    //   "node"
+    // ]
   }
 }

@@ -1,0 +1,84 @@
+[
+  {
+    "description": "  Display the title",
+    "keyword": "Feature",
+    "name": "Go to the home",
+    "line": 1,
+    "id": "go-to-the-home",
+    "tags": [],
+    "uri": "e2e\\src\\features\\app.feature",
+    "elements": [
+      {
+        "id": "go-to-the-home;home-page",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Home Page",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "e2e\\src\\steps\\app.steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am on the home page",
+            "match": {
+              "location": "e2e\\src\\steps\\app.steps.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4234000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "I do nothing",
+            "match": {
+              "location": "e2e\\src\\steps\\app.steps.ts:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should see the title",
+            "match": {
+              "location": "e2e\\src\\steps\\app.steps.ts:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 93000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "node_modules\\protractor-cucumber-framework\\lib\\resultsCapturer.js:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
