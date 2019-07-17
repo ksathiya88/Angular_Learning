@@ -8,7 +8,7 @@ const {
 exports.config = {
   allScriptsTimeout: 30000,
   specs: [
-    '../e2e/**/*.e2e-spec.ts'
+    '../e2e/**/login.spec.ts'
   ],
   capabilities: {
     'browserName': 'chrome',
@@ -17,8 +17,9 @@ exports.config = {
       // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
     }
   },
+  seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
   SELENIUM_PROMISE_MANAGER: false,
-  directConnect: true,
+  directConnect: false,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {

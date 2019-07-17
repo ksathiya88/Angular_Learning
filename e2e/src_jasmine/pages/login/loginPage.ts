@@ -1,22 +1,22 @@
-import { ILoginPage } from "./login.interface";
-import { setElement, elemClick } from "e2e/actions";
-import { promise as wdpromise } from "selenium-webdriver";
-import { browser, element, by } from "protractor";
+import {ILoginPage} from './login.interface';
+import {setElement, elemClick, setValues} from '../../../actions';
+import {promise as wdpromise} from 'selenium-webdriver';
+import {browser, element, by} from 'protractor';
 
 export const loginPageIds: ILoginPage = {
-  username: "username",
-  password: "password",
-  submit: "submit"
+  username: 'username',
+  password: 'password',
+  submit: 'submit'
+};
+
+export const loginPageValues: ILoginPage = {
+  username: 'abc',
+  password: 'pass',
 };
 
 export class LoginPage {
   login(): wdpromise.Promise<any> {
-    const username = "abc";
-    const password = "pass";
-    return setElement(loginPageIds.username, username)
-      .then(() => {
-        setElement(loginPageIds.password, password);
-      })
+    return setValues(loginPageIds, loginPageValues)
       .then(() => {
         elemClick(loginPageIds.submit);
       });
@@ -27,5 +27,9 @@ export class LoginPage {
     return browser.get(browser.baseUrl);
   }
 
-  loginForProtractor(): wdpromise.Promise<any> {}
+  loginForProtractor(): wdpromise.Promise<any> {
+    return this.gotoPage().then(() => {
+      return this.login();
+    });
+  }
 }
