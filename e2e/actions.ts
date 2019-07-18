@@ -48,6 +48,10 @@ export function elemClick(id: string) {
   return element(by.id(id)).click();
 }
 
+export function getElementFinder(id: string) {
+  return element(by.id(id));
+}
+
 export interface IElement {
   id: string;
   value: string;
@@ -74,6 +78,12 @@ export function waitUntillLoaded(elem: ElementFinder) {
     10000,
     "Timeout occurred"
   );
+}
+
+export function elementPresent(
+  elem: ElementFinder
+): wdpromise.Promise<boolean> {
+  return elem.isPresent();
 }
 
 export function waitUntillEnabled(elem: ElementFinder) {

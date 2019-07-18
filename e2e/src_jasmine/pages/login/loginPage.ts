@@ -33,11 +33,7 @@ export class LoginPage {
         return elemClick(loginPageIds.submit);
       })
       .then(() => {
-        browser.sleep(4000);
-        return waitUntillLoaded(element(by.id("logout")));
-      })
-      .then(() => {
-        return browser.sleep(5000);
+        return browser.sleep(4000);
       });
   }
 
