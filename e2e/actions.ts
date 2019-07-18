@@ -3,6 +3,7 @@ import { element, by, protractor, browser, ElementFinder } from "protractor";
 
 export function setElement(id: string, value: string): wdpromise.Promise<any> {
   const elemObj = element(by.id(id));
+  console.log("setElement called with", id, value);
   return elemObj.getTagName().then((tagName: string) => {
     return elemObj.getAttribute("type").then((attributeType: string) => {
       if (tagName === "select") {
@@ -75,18 +76,28 @@ export function waitUntillLoaded(elem: ElementFinder) {
   );
 }
 
+export function waitUntillEnabled(elem: ElementFinder) {
+  return browser.wait<boolean>(
+    () => elem.isEnabled(),
+    10000,
+    "Timeout occurred"
+  );
+}
+
 export function setValues(ids: {}, values: {}) {
+  console.log("set Values called with", ids, values);
   return elementsSeq(getElements(ids, values));
 }
 
 export function getElements(ids: {}, values: {}) {
   const elements: IElement[] = [];
-  for (const key in Object.keys(ids)) {
+  Object.keys(ids).forEach(key => {
     if (key in values) {
       const value: string = values[key];
       const id: string = ids[key];
       elements.push({ id, value });
     }
-  }
+  });
+  console.log("getElements returns", elements);
   return elements;
 }

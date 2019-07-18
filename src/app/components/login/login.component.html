@@ -1,6 +1,5 @@
-
 <h1>Template Model Form</h1>
-<form  (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="form-group">
     <label for="username">UserName:</label>
     <input id="username" type="text" name="username" ngModel required #name="ngModel">
@@ -12,7 +11,7 @@
     <span *ngIf="!pass.valid && pass.errors?.minlength" class="help-block">Minimum 4 letters is mandatory</span>
     <span *ngIf="!pass.valid && !pass.errors?.minlength && pass.touched" class="help-block">Password is required</span>
   </div>
-  <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Submit</button>
+  <button [disabled]="!f.valid" id="submit" type="submit" class="btn btn-primary">Submit</button>
   <div *ngIf="error" class="alert alert-danger">
     <strong>Authentication Failed !</strong>
   </div>

@@ -3,7 +3,8 @@ import {
   setElement,
   elemClick,
   setValues,
-  waitUntillLoaded
+  waitUntillLoaded,
+  waitUntillEnabled
 } from "../../../actions";
 import { promise as wdpromise } from "selenium-webdriver";
 import { browser, element, by } from "protractor";
@@ -16,31 +17,43 @@ export const loginPageIds: ILoginPage = {
 
 export const loginPageValues: ILoginPage = {
   username: "abc",
-  password: "pass111"
+  password: "pass"
 };
 
 export class LoginPage {
   login(): wdpromise.Promise<any> {
     return setValues(loginPageIds, loginPageValues)
       .then(() => {
-        console.log("hello222222222");
-        elemClick(loginPageIds.submit);
+        browser.sleep(4000);
       })
       .then(() => {
-        waitUntillLoaded(element(by.id("logout")));
+        return waitUntillEnabled(element(by.id(loginPageIds.submit)));
+      })
+      .then(() => {
+        return elemClick(loginPageIds.submit);
+      })
+      .then(() => {
+        browser.sleep(4000);
+        return waitUntillLoaded(element(by.id("logout")));
+      })
+      .then(() => {
+        return browser.sleep(5000);
       });
   }
 
   public gotoPage() {
-    browser.waitForAngularEnabled(false);
+    browser.ignoreSynchronization = true;
     return browser.get(browser.baseUrl);
   }
 
   loginForProtractor(): wdpromise.Promise<any> {
     return this.gotoPage()
       .then(() => {
-        waitUntillLoaded(element(by.id("username")));
+        return waitUntillLoaded(element(by.id(loginPageIds.username)));
       })
-      .then(() => this.login());
+      .then(() => browser.sleep(5000))
+      .then(() => {
+        return this.login();
+      });
   }
 }

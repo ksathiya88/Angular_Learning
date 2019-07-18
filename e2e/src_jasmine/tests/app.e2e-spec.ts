@@ -10,8 +10,13 @@ describe("workspace-project App", () => {
   });
 
   it("should display welcome message", () => {
+  
     page.navigateTo();
     expect(page.getTitleText()).toEqual("Template Model Form");
+    for (i = 0; i < 100000; i++) {
+      console.log(i);
+    }
+ 
   });
 
   afterEach(async () => {
