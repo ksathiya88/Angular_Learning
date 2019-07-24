@@ -29,7 +29,9 @@ export class EmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log('routeValue', this.route.snapshot.params.key);
+    console.log("routeValue", this.route.snapshot.params.key);
+    console.log("routeValue1", this.route.snapshot.fragment);
+    console.log("routeValue222", this.route.snapshot.queryParams);
     const key = this.route.snapshot.params.key;
     // if key has a value
     if (key) {

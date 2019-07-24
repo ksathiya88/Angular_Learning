@@ -17,6 +17,19 @@ exports.config = {
       // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
     }
   },
+  // multiCapabilities:[{
+  //   'browserName': 'chrome',
+  //   'chromeOptions': {
+  //     'args': ['show-fps-counter=true', '--no-sandbox']
+  //     // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
+  //   }
+  // },{}{
+  //   'browserName': 'firefox',
+  //   'chromeOptions': {
+  //     'args': ['show-fps-counter=true', '--no-sandbox']
+  //     // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
+  //   }
+  // }]
   seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
   SELENIUM_PROMISE_MANAGER: false,
   directConnect: false,
