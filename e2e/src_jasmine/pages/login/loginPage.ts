@@ -8,14 +8,15 @@ import {
 } from "../../../actions";
 import { promise as wdpromise } from "selenium-webdriver";
 import { browser, element, by } from "protractor";
+import { ILocRef, LocationTypes } from "../../../action.interface";
 
-export const loginPageIds: ILoginPage = {
-  username: "username",
-  password: "password",
-  submit: "submit"
+export const loginPageIds: ILoginPage<ILocRef> = {
+  username: { type: LocationTypes.Xpath, value: '//*[@id="username"]' },
+  password: { type: LocationTypes.Id, value: "password" },
+  submit: { type: LocationTypes.Class, value: "submit" }
 };
 
-export const loginPageValues: ILoginPage = {
+export const loginPageValues: ILoginPage<string> = {
   username: "abc",
   password: "pass"
 };
@@ -27,7 +28,7 @@ export class LoginPage {
         browser.sleep(4000);
       })
       .then(() => {
-        return waitUntillEnabled(element(by.id(loginPageIds.submit)));
+        return waitUntillEnabled(loginPageIds.submit);
       })
       .then(() => {
         return elemClick(loginPageIds.submit);
@@ -45,7 +46,7 @@ export class LoginPage {
   loginForProtractor(): wdpromise.Promise<any> {
     return this.gotoPage()
       .then(() => {
-        return waitUntillLoaded(element(by.id(loginPageIds.username)));
+        return waitUntillLoaded(loginPageIds.username);
       })
       .then(() => browser.sleep(5000))
       .then(() => {

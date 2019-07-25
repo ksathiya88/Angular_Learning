@@ -1,5 +1,5 @@
-export interface ILoginPage {
-  username?: string;
-  password?: string;
-  submit?: string;
+export interface ILoginPage<T> {
+  username?: T;
+  password?: T;
+  submit?: T;
 }

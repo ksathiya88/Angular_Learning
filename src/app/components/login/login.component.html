@@ -11,7 +11,7 @@
     <span *ngIf="!pass.valid && pass.errors?.minlength" class="help-block">Minimum 4 letters is mandatory</span>
     <span *ngIf="!pass.valid && !pass.errors?.minlength && pass.touched" class="help-block">Password is required</span>
   </div>
-  <button [disabled]="!f.valid" id="submit" type="submit" class="btn btn-primary">Submit</button>
+  <button [disabled]="!f.valid" class="submit" type="submit" class="btn btn-primary">Submit</button>
   <div *ngIf="error" class="alert alert-danger">
     <strong>Authentication Failed !</strong>
   </div>
