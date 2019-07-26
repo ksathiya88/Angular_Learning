@@ -4,7 +4,8 @@ import {
   elemClick,
   setValues,
   waitUntillLoaded,
-  waitUntillEnabled
+  waitUntillEnabled,
+  checkValues
 } from "../../../actions";
 import { promise as wdpromise } from "selenium-webdriver";
 import { browser, element, by } from "protractor";
@@ -21,11 +22,19 @@ export const loginPageValues: ILoginPage<string> = {
   password: "pass"
 };
 
+export const loginPageCheckValues: ILoginPage<string> = {
+  username: "abc11",
+  password: "pass"
+};
+
 export class LoginPage {
   login(): wdpromise.Promise<any> {
     return setValues(loginPageIds, loginPageValues)
       .then(() => {
         browser.sleep(4000);
+      })
+      .then(() => {
+        return checkValues(loginPageIds, loginPageCheckValues);
       })
       .then(() => {
         return waitUntillEnabled(loginPageIds.submit);

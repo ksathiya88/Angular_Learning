@@ -30,14 +30,35 @@ export function checkElement(
   return elemObj.getTagName().then((tagName: string) => {
     return elemObj.getAttribute("type").then((attributeType: string) => {
       if (tagName === "select") {
-        return expect(elemObj.$("option:checked").getText()).toBe(value);
+        return checkSelect(value, elemObj);
       } else if (attributeType === "radio" || attributeType === "checkbox") {
         return checkCheckbox(value, elemObj);
       } else {
-        return expect(elemObj.getAttribute("value")).toBe(value);
+        return checkInput(value, elemObj);
       }
     });
   });
+}
+
+function checkInput(
+  value: string,
+  elemObj: ElementFinder
+): wdpromise.Promise<any> {
+  return elemObj.getAttribute("value").then((attributeValue: string) => {
+    return assert.equal(value, attributeValue);
+  });
+}
+
+function checkSelect(
+  value: string,
+  elemObj: ElementFinder
+): wdpromise.Promise<any> {
+  return elemObj
+    .$("option:checked")
+    .getText()
+    .then(text => {
+      return assert.equal(text, value);
+    });
 }
 
 function checkCheckbox(
@@ -48,11 +69,7 @@ function checkCheckbox(
     return elemObj.isSelected().then(recValue => {
       return assert.equal(recValue.toString(), value);
     });
-    // return assert.equal(elemObj.isSelected()).toBeTruthy;
   }
-  // else {
-  //   return expect(elemObj.isSelected()).toBeFalsy;
-  // }
 }
 
 function selectProperty(elemObj: ElementFinder, value: string) {
@@ -114,7 +131,7 @@ export function elementsRandom(arrayElements: IElement[]) {
 
 export function checkRandom(arrayElements: IElement[]) {
   const deferredAll = arrayElements.map(item => {
-    checkElement(item.location, item.value);
+    return checkElement(item.location, item.value);
   });
   return protractor.promise.all(deferredAll);
 }
@@ -145,7 +162,7 @@ export function setValues(ids: {}, values: {}) {
 }
 
 export function checkValues(ids: {}, values: {}) {
-  console.log("set Values called with", ids, values);
+  console.log("check Values called with", ids, values);
   return checkRandom(getElements(ids, values));
 }
 

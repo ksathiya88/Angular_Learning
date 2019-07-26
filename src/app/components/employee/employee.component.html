@@ -8,4 +8,8 @@
 <div><label appAppHeader>Employee Name:</label>{{employee.name | uppercase }}</div>
 <div><label appAppHeader>DOB:</label>&nbsp;&nbsp;{{employee.dateOfBirth | date:'longDate'}}</div>
 <div><label appAppHeader>Position Held:</label>{{employee.positionHeld | decorate:"**" }}</div>
-<div><input type="button" value="Delete" (click)="deleteFn(employee.key)"/></div>
+<div><input type="button" value="Delete" (click)="deleteFn(employee.key)"/>
+
+<button>GotoEmployee</button>
+
+</div>
