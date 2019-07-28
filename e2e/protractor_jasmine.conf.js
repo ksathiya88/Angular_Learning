@@ -5,6 +5,7 @@ const {
   SpecReporter
 } = require('jasmine-spec-reporter');
 
+var jasmineReporters = require('jasmine-reporters');
 exports.config = {
   allScriptsTimeout: 30000,
   specs: [
@@ -17,6 +18,17 @@ exports.config = {
       // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
     }
   },
+  plugins: [{
+    package: 'jasmine2-protractor-utils',
+    disableHTMLReport: true,
+    disableScreenshot: false,
+    testBrowser: 'chrome-browser',
+    screenshotPath: './e2e/reports/screenshots',
+    htmlReportDir: './e2e/reports/',
+    screenshotOnExpectFailure: false,
+    screenshotOnSpecFailure: true,
+    clearFoldersBeforeTest: true
+  }],
   // multiCapabilities:[{
   //   'browserName': 'chrome',
   //   'chromeOptions': {
@@ -46,6 +58,11 @@ exports.config = {
     });
   },
   onPrepare() {
+    jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
+      consolidateAll: true,
+      savePath: './e2e/testresults/',
+      filePrefix: 'xmlresults'
+    }));
     jasmine.getEnv().addReporter(new SpecReporter({
       spec: {
         displayStacktrace: true
@@ -53,28 +70,27 @@ exports.config = {
     }));
 
   },
+  //HTMLReport called once tests are finished
+  onComplete: function () {
+    var browserName, browserVersion;
+    var capsPromise = browser.getCapabilities();
 
-  // //HTMLReport called once tests are finished
-  // onComplete: function () {
-  //   var browserName, browserVersion;
-  //   var capsPromise = browser.getCapabilities();
+    capsPromise.then(function (caps) {
+      browserName = caps.get('browserName');
+      browserVersion = caps.get('version');
 
-  //   capsPromise.then(function (caps) {
-  //     browserName = caps.get('browserName');
-  //     browserVersion = caps.get('version');
+      var HTMLReport = require('protractor-html-reporter');
 
-  //     var HTMLReport = require('protractor-html-reporter');
-
-  //     testConfig = {
-  //       reportTitle: 'Shield End To End Testing Report',
-  //       outputPath: 'testresults/',
-  //       screenshotPath: 'screenshots',
-  //       testBrowser: browserName,
-  //       browserVersion: browserVersion,
-  //       modifiedSuiteName: false,
-  //       screenshotsOnlyOnFailure: true
-  //     };
-  //     new HTMLReport().from('e2e/testresults/xmlresults.xml', testConfig);
-  //   });
-  // }
+      testConfig = {
+        reportTitle: 'Shield End To End Testing Report',
+        outputPath: './e2e/reports/',
+        screenshotPath: 'screenshots',
+        testBrowser: browserName,
+        browserVersion: browserVersion,
+        modifiedSuiteName: false,
+        screenshotsOnlyOnFailure: true
+      };
+      new HTMLReport().from('./e2e/testresults/xmlresults.xml', testConfig);
+    });
+  }
 };

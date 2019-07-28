@@ -6,7 +6,7 @@ import {
   waitUntillLoaded,
   waitUntillEnabled,
   checkValues
-} from "../../../actions";
+} from "protractor_utility";
 import { promise as wdpromise } from "selenium-webdriver";
 import { browser, element, by } from "protractor";
 import { ILocRef, LocationTypes } from "../../../action.interface";
@@ -23,7 +23,7 @@ export const loginPageValues: ILoginPage<string> = {
 };
 
 export const loginPageCheckValues: ILoginPage<string> = {
-  username: "abc11",
+  username: "abc111",
   password: "pass"
 };
 
