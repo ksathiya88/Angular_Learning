@@ -3,9 +3,9 @@ import {
   waitUntillLoaded,
   getElementFinder,
   elementPresent
-} from "../../../actions";
+} from "protractor_utility";
 import { assert } from "chai";
-import { ILocRef, LocationTypes } from "../../../action.interface";
+import { ILocRef, LocationTypes } from "protractor_utility";
 
 export const homePageIds: IHomePage<ILocRef> = {
   employeeList: { type: LocationTypes.Id, value: "empList_btn" },

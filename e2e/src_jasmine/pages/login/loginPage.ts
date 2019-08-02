@@ -9,8 +9,8 @@ import {
 } from "protractor_utility";
 import { promise as wdpromise } from "selenium-webdriver";
 import { browser, element, by } from "protractor";
-import { ILocRef, LocationTypes, IValueTypes } from "../../../action.interface";
-import { readExcel } from "../../../actions";
+import { ILocRef, LocationTypes, IValueTypes } from "protractor_utility";
+import { readExcel } from "protractor_utility";
 
 // export const loginPageIds: ILoginPage<ILocRef> = {
 //   username: { type: LocationTypes.Xpath, value: '//*[@id="username"]' },
