@@ -6,7 +6,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\node_modules\\protractor\\bin\\protractor",
-            "args":["${workspaceFolder}\\protractor_jasmine.conf.js"],
+            "args":["${workspaceFolder}\\e2e\\protractor_jasmine.conf.js"],
         }
     ]
 }

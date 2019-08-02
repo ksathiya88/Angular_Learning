@@ -11,13 +11,12 @@ exports.config = {
   specs: [
     '../e2e/**/login.spec.ts'
   ],
-  capabilities: {
-    'browserName': 'chrome',
-    'chromeOptions': {
-      'args': ['show-fps-counter=true', '--no-sandbox']
-      // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
-    }
-  },
+  // capabilities: {
+  //   'browserName': 'firefox',
+  //   'moz:firefoxOptions': {
+  //     'args': ['--safe-mode']
+  //   }
+  // },
   plugins: [{
     package: 'jasmine2-protractor-utils',
     disableHTMLReport: true,
@@ -29,14 +28,21 @@ exports.config = {
     screenshotOnSpecFailure: true,
     clearFoldersBeforeTest: true
   }],
-  // multiCapabilities:[{
-  //   'browserName': 'chrome',
-  //   'chromeOptions': {
-  //     'args': ['show-fps-counter=true', '--no-sandbox']
-  //     // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
-  //   }
-  // },{}{
-  //   'browserName': 'firefox',
+  multiCapabilities:[
+    {
+    'browserName': 'chrome',
+    chromeOptions: {
+      'args': ['show-fps-counter=true', '--no-sandbox']
+      //args: [ '--headless', '--disable-gpu', '--no-sandbox', '--window-size=1920x1200' ]
+      // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
+    }},
+    {
+    'browserName': 'firefox',
+    'moz:firefoxOptions': {
+      'args': ['--safe-mode']
+    }
+  }],
+    // 'browserName': 'firefox',
   //   'chromeOptions': {
   //     'args': ['show-fps-counter=true', '--no-sandbox']
   //     // 'args': ['--headless', 'show-fps-counter=true', '--no-sandbox']  // headless
@@ -52,12 +58,15 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function () {}
   },
-  beforeLaunch: function () {
+  // beforeLaunch: function () {
+  //   require('ts-node').register({
+  //     project: 'e2e/tsconfig.e2e.json'
+  //   });
+  // },
+  onPrepare() {
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'
     });
-  },
-  onPrepare() {
     jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
       consolidateAll: true,
       savePath: './e2e/testresults/',
